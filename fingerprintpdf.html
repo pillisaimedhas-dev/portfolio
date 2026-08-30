@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Biometric Fingerprint-Based Voting System - Case Study</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #1e293b;
+      font-size: 9pt;
+      line-height: 1.35;
+    }
+
+    /* Header Banner */
+    .header {
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+    }
+
+    .badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .badge-award {
+      background-color: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fcd34d;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-dept {
+      color: #64748b;
+      font-size: 8pt;
+      font-weight: 600;
+    }
+
+    h1 {
+      color: #0f172a;
+      font-size: 15pt;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 3px;
+    }
+
+    .meta-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 8pt;
+      color: #475569;
+      background: #f8fafc;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    /* Section Styling */
+    h2 {
+      color: #0369a1;
+      font-size: 9.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-left: 3px solid #0284c7;
+      padding-left: 6px;
+      margin-top: 7px;
+      margin-bottom: 4px;
+    }
+
+    p {
+      color: #334155;
+      text-align: justify;
+      margin-bottom: 4px;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    /* Card Component */
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 5px;
+      padding: 6px 8px;
+    }
+
+    .card-title {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 8.5pt;
+      margin-bottom: 2px;
+    }
+
+    /* Flow Steps */
+    ol {
+      padding-left: 14px;
+      margin-bottom: 4px;
+    }
+
+    li {
+      margin-bottom: 2px;
+      color: #334155;
+    }
+
+    li strong {
+      color: #0f172a;
+    }
+
+    /* Table Styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+      margin-bottom: 4px;
+      font-size: 8pt;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 4px 6px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+
+    .highlight-cell {
+      font-weight: 600;
+      color: #0369a1;
+    }
+
+    /* Architecture Block */
+    .arch-flow {
+      background: #0f172a;
+      color: #38bdf8;
+      font-family: "Courier New", monospace;
+      font-size: 7.5pt;
+      padding: 6px 8px;
+      border-radius: 4px;
+      text-align: center;
+      margin: 4px 0;
+      line-height: 1.3;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 4px;
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge-row">
+      <span class="badge-award">🏆 1st Prize Winner – Genesis of the Trailblazers</span>
+      <span class="badge-dept">Vel Tech University | School of Computing</span>
+    </div>
+    <h1>Biometric Fingerprint-Based Electronic Voting System (EVS)</h1>
+    <div class="meta-info">
+      <div><strong>Authors:</strong> P. Sai Medhas (Lead), A. Kaif, J. Rithik Reddy</div>
+      <div><strong>Supervisor:</strong> Dr. M. Kavitha, Prof. & Head</div>
+      <div><strong>Course:</strong> 10214CS601 - Minor Project-1</div>
+    </div>
+  </div>
+
+  <!-- Abstract & Architecture -->
+  <div class="grid-2">
+    <div>
+      <h2>1. Executive Summary</h2>
+      <p>
+        Traditional voting mechanisms are susceptible to manual identification errors, voter impersonation, and fraudulent double-voting. This project presents a standalone, secure biometric electronic voting prototype that enforces the fundamental democratic mandate of <strong>"One Person – One Vote"</strong>.
+      </p>
+      <p>
+        By integrating high-accuracy optical minutiae scanning with hardware-level state machine lockouts, the system eliminates duplicate votes in real-time, displays immediate voting telemetry, and computes transparent tallies without network vulnerability.
+      </p>
+    </div>
+
+    <div>
+      <h2>2. Core Hardware Stack</h2>
+      <div class="arch-flow">
+        [Optical Sensor / UART] ➔ [ATmega328P MCU] ➔ [I2C 16x2 LCD]<br>
+        [Tactile Push Buttons]  ➔ [Processing Engine] ➔ [Piezo Alert Unit]
+      </div>
+      <div class="grid-3" style="margin-top: 4px;">
+        <div class="card">
+          <div class="card-title">Processing</div>
+          <div>Arduino Uno (ATmega328P)</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Biometrics</div>
+          <div>R307 Optical Sensor</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Feedback</div>
+          <div>16x2 LCD & Piezo Unit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Methodology -->
+  <h2>3. System Workflow & Verification Logic</h2>
+  <ol>
+    <li><strong>Admin Enrollment Mode:</strong> Master biometric verification initiates voter onboarding. Minutiae templates are indexed into non-volatile internal EEPROM with a default state flag set to <code>HasVoted = FALSE</code>.</li>
+    <li><strong>Biometric Authentication:</strong> A voter places their finger on the optical sensor. The onboard DSP executes template matching against registered IDs. Unrecognized prints are denied with an onscreen alert.</li>
+    <li><strong>Vote Polling & Duplicate Prevention:</strong> If <code>HasVoted == FALSE</code>, tactile polling keys activate, registering the candidate preference. The flag immediately toggles to <code>HasVoted = TRUE</code>. Any subsequent attempt triggers an audio buzzer alarm and displays <strong>"Already Voted"</strong> on the LCD.</li>
+  </ol>
+
+  <!-- Performance Comparison -->
+  <h2>4. Experimental Evaluation & Verification Matrix</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Test Scenario</th>
+        <th style="width: 35%;">Conventional Ballot / EVM</th>
+        <th style="width: 40%;">Our Biometric Voting System</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Voter Identity Check</strong></td>
+        <td>Manual photo ID matching (Moderate accuracy)</td>
+        <td class="highlight-cell">Biometric Minutiae Matching (High accuracy)</td>
+      </tr>
+      <tr>
+        <td><strong>Duplicate Vote Attempt</strong></td>
+        <td>Vulnerable to manual oversight & ink bypass</td>
+        <td class="highlight-cell">100% Blocked — "Already Voted" Onscreen Lockout</td>
+      </tr>
+      <tr>
+        <td><strong>Vote Recording</strong></td>
+        <td>Manual ballot slip insertion / separate ballot box</td>
+        <td class="highlight-cell">Instant GPIO Input Processing & Status Update</td>
+      </tr>
+      <tr>
+        <td><strong>Result Tabulation</strong></td>
+        <td>Hours or days of manual tallying</td>
+        <td class="highlight-cell">Instant LCD Result Tally Output via Admin Mode</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Metrics & Highlights -->
+  <div class="grid-2">
+    <div>
+      <h2>5. Security & Efficiency Gains</h2>
+      <p>
+        Multi-iteration benchmark testing demonstrated marked improvements across fraud mitigation and voter throughput speed:
+      </p>
+      <ul>
+        <li><strong>Turnaround Efficiency Index:</strong> Scaled progressively across 4 test attempts from <strong>1.20</strong> up to a peak index of <strong>3.40</strong> (compared to 2.40 on legacy setups).</li>
+        <li><strong>Security Index:</strong> 0% duplicate vote allowance across all concurrent voter attempts.</li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>6. Engineering Highlights</h2>
+      <ul>
+        <li><strong>Low-Latency UART Link:</strong> Fast serial protocol between sensor DSP and ATmega328P ensuring sub-second response times.</li>
+        <li><strong>Air-Gapped Security:</strong> Embedded standalone design operates without internet connectivity, preventing external cyber attacks.</li>
+        <li><strong>Power Efficiency:</strong> Optimized 5V/9V low-power supply suitable for portable deployment.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div>Portfolio Case Study • Sai Medhas Pilli • pillisaimedhas@gmail.com</div>
+    <div>Vel Tech Rangarajan Dr. Sagunthala R&D Institute of Science and Technology • 2026</div>
+  </div>
+
+</body>
+</html>

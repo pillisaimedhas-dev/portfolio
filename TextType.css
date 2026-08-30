@@ -1,0 +1,46 @@
+/* -- TextType Component ----------------------------------- */
+.text-type {
+  display: inline;
+  white-space: pre-wrap;
+}
+
+.text-type__cursor {
+  margin-left: 0.08em;
+  display: inline-block;
+  opacity: 1;
+  font-weight: 200;
+  color: #22d3ee;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.9), 0 0 20px rgba(99, 102, 241, 0.7);
+  animation: cursor-glow-blink 0.85s ease-in-out infinite alternate;
+}
+
+@keyframes cursor-glow-blink {
+  0% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.9));
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.15;
+    filter: drop-shadow(0 0 2px rgba(34, 211, 238, 0.2));
+  }
+}
+
+.text-type__cursor--hidden {
+  display: none;
+}
+
+/* Elements that appear after typing completes */
+.hero-after-type {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-after-type.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+

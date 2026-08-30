@@ -1,0 +1,577 @@
+/* Google Fonts Integration */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --font-heading: 'Outfit', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  /* Theme colors - default to dark mode */
+  --bg-primary: #000208;
+  --bg-secondary: #06090f;
+  --bg-tertiary: #0b0f18;
+  --border-color: rgba(255, 255, 255, 0.06);
+  --text-primary: #e2e8f0;
+  --text-secondary: #8892a4;
+  --text-muted: #555f70;
+  
+  /* Accent glows — cooler deep-space palette */
+  --accent-cyan: 0, 160, 195;
+  --accent-purple: 110, 45, 190;
+  --accent-indigo: 65, 80, 210;
+  --accent-emerald: 0, 150, 105;
+  
+  --card-bg: rgba(4, 6, 18, 0.70);
+  --card-border: rgba(255, 255, 255, 0.16);
+  --navbar-bg: rgba(0, 2, 8, 0.82);
+  --glow-opacity: 0.14;
+}
+
+
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.35), 0 0 20px 0 rgba(255, 255, 255, 0.02);
+}
+
+
+
+/* Dynamic glow blobs */
+.glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: var(--glow-opacity);
+  z-index: 0;
+  pointer-events: none;
+  animation: float 20s infinite alternate ease-in-out;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(30px, -50px) scale(1.2);
+  }
+  100% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 160, 195, 0.75);
+  box-shadow: 0 12px 30px -10px rgba(0, 160, 195, 0.12);
+}
+
+
+
+/* Premium Glow Buttons */
+.btn-glow {
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(6, 182, 212, 0.4), rgba(168, 85, 247, 0.4));
+  filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+.btn-glow:hover::after {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   High-Tech "Contact Me" Floating Hero Button
+   - Frosted cyber-capsule with neon cyan borders
+   - Animated diagonal light sweep
+   - Glowing live pulse status beacon
+   - Interactive hover lift & spring physics
+   ========================================================================== */
+
+.contact-hero-btn {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 1.35rem;
+  border-radius: 9999px;
+  background: rgba(6, 10, 24, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(6, 182, 212, 0.55);
+  box-shadow: 
+    0 12px 30px -5px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(6, 182, 212, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 30;
+}
+
+/* Moving diagonal light sweep */
+.contact-hero-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: contact-shine 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes contact-shine {
+  0% { left: -150%; }
+  35% { left: 150%; }
+  100% { left: 150%; }
+}
+
+.contact-hero-btn:hover {
+  transform: translateX(-50%) translateY(-3px) scale(1.05);
+  border-color: rgba(34, 211, 238, 0.95);
+  background: rgba(8, 14, 34, 0.92);
+  box-shadow: 
+    0 16px 36px -6px rgba(0, 0, 0, 0.9),
+    0 0 32px rgba(6, 182, 212, 0.65),
+    0 0 48px rgba(99, 102, 241, 0.45),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.contact-hero-btn:active {
+  transform: translateX(-50%) translateY(0) scale(0.98);
+}
+
+/* Active Nav Links */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgb(6, 182, 212), rgb(168, 85, 247));
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link.active,
+#mobile-menu a.active {
+  color: #f3f4f6 !important;
+  font-weight: 600 !important;
+}
+
+/* Availability Badge Pulse */
+.pulse-dot {
+  position: relative;
+}
+
+.pulse-dot::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: inherit;
+  animation: pulse-ring 1.5s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.33);
+    opacity: 1;
+  }
+  80%, 100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Custom Gradients */
+.text-gradient {
+  background: linear-gradient(135deg, #06b6d4 0%, #6366f1 50%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Top Scroll Progress Indicator */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #06b6d4, #6366f1, #a855f7, #22d3ee);
+  background-size: 300% 100%;
+  animation: progress-gradient 4s ease infinite;
+  z-index: 100;
+  width: 0%;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.8), 0 0 20px rgba(99, 102, 241, 0.5);
+  transition: width 0.1s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+@keyframes progress-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Section Animated Shimmer Accent Bar */
+.section-accent-bar {
+  width: 4.5rem;
+  height: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #06b6d4, #6366f1, #a855f7, #06b6d4);
+  background-size: 300% 100%;
+  animation: accent-shimmer 4s ease infinite;
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.45);
+}
+
+@keyframes accent-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ==========================================================================
+   Edge Gestures for All Blocks (.card-glow-wrapper)
+   - Interactive Laser Edge Spotlight: 1.75px perimeter border traces cursor proximity
+   - Dynamic 3D Edge Tilt & Responsive Depth
+   - Edge Proximity Bloom & Neon Edge Flare
+   ========================================================================== */
+
+.card-glow-wrapper {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: 
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* 1. Interior soft radial wash */
+.card-glow-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    500px circle at var(--mouse-x, -200px) var(--mouse-y, -200px),
+    rgba(6, 182, 212, 0.09),
+    rgba(99, 102, 241, 0.05) 40%,
+    transparent 70%
+  );
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
+/* 2. Interactive Laser Edge Spotlight Gesture (Traces perimeter border) */
+.card-glow-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.75px;
+  background: radial-gradient(
+    320px circle at var(--mouse-x, -200px) var(--mouse-y, -200px),
+    rgba(34, 211, 238, 1) 0%,
+    rgba(99, 102, 241, 0.85) 30%,
+    rgba(168, 85, 247, 0.4) 55%,
+    transparent 75%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+  opacity: 0;
+  z-index: 25;
+}
+
+@media (hover: hover) {
+  .card-glow-wrapper:hover::before,
+  .card-glow-wrapper:hover::after {
+    opacity: 1;
+  }
+
+  .card-glow-wrapper:hover {
+    border-color: rgba(6, 182, 212, 0.4);
+    box-shadow: 
+      0 20px 40px -15px rgba(0, 0, 0, 0.85),
+      0 0 25px rgba(6, 182, 212, 0.22),
+      inset 0 0 20px rgba(6, 182, 212, 0.04);
+  }
+
+  /* When cursor is directly near block edges, intensify the edge laser */
+  .card-glow-wrapper.edge-hovered::after {
+    filter: brightness(1.25) drop-shadow(0 0 6px rgba(34, 211, 238, 0.75));
+  }
+}
+
+/* Interactive Tech Badge / Chip Glow */
+.tech-chip {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tech-chip:hover {
+  transform: translateY(-2px);
+  border-color: rgba(6, 182, 212, 0.6) !important;
+  color: #38bdf8 !important;
+  background: rgba(6, 182, 212, 0.12) !important;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.25);
+}
+
+/* Floating Back to Top Button */
+#back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 40;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 6, 18, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #38bdf8;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(6, 182, 212, 0.3);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+#back-to-top:hover {
+  transform: translateY(-4px) scale(1.05);
+  border-color: rgba(6, 182, 212, 0.8);
+  box-shadow: 0 12px 30px -5px rgba(6, 182, 212, 0.4), 0 0 25px rgba(99, 102, 241, 0.4);
+  color: #ffffff;
+}
+
+#back-to-top svg.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+#back-to-top svg.progress-ring circle {
+  fill: transparent;
+  stroke: url(#progress-gradient);
+  stroke-width: 3;
+  stroke-dasharray: 157;
+  stroke-dashoffset: 157;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+/* Micro-press on buttons */
+button:active, .btn-glow:active, a.btn-glow:active {
+  transform: scale(0.97);
+}
+
+/* Form validation states */
+.form-input {
+  background: rgba(15, 23, 42, 0.35);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+
+
+.form-input:focus {
+  outline: none;
+  border-color: rgba(65, 80, 210, 0.75);
+  box-shadow: 0 0 10px rgba(65, 80, 210, 0.15);
+}
+
+/* Scroll Animation Fades */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Aurora Background Styling — canvas handles rendering; container hidden */
+.aurora-container {
+  display: none;
+}
+
+.aurora-blob {
+  position: absolute;
+  width: 75vw;
+  height: 75vh;
+  border-radius: 50%;
+  filter: blur(140px);
+  mix-blend-mode: screen;
+  opacity: 0.18;
+  will-change: transform;
+  animation: float-aurora 28s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.85) 0%, transparent 75%);
+  top: -20%;
+  left: -15%;
+  animation-duration: 22s;
+}
+
+.blob-2 {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.85) 0%, transparent 75%);
+  top: 35%;
+  right: -20%;
+  animation-duration: 27s;
+  animation-delay: -6s;
+}
+
+.blob-3 {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.85) 0%, transparent 75%);
+  bottom: -20%;
+  left: 15%;
+  animation-duration: 32s;
+  animation-delay: -12s;
+}
+
+.blob-4 {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.65) 0%, transparent 75%);
+  top: 15%;
+  right: 25%;
+  animation-duration: 29s;
+  animation-delay: -18s;
+}
+
+@keyframes float-aurora {
+  0% {
+    transform: translate(0px, 0px) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(50px, -70px) scale(1.15) rotate(120deg);
+  }
+  66% {
+    transform: translate(-30px, 40px) scale(0.9) rotate(240deg);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1) rotate(360deg);
+  }
+}
+
+/* Sharp bright section dividers and edge borders */
+section.border-t, footer.border-t {
+  border-top-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+header.border-b {
+  border-bottom-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+#mobile-menu {
+  border-top-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+

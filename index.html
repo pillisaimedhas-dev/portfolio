@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sai Medhas Pilli | Portfolio</title>
+  <meta name="description" content="Portfolio of Sai Medhas Pilli - AI/ML & IoT Enthusiast, Full-Stack Builder, and Software Developer.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="TextType.css">
+  <link rel="stylesheet" href="Dock.css">
+  
+  <!-- GSAP (for TextType cursor animation) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            darkBg: '#030712',
+            darkCard: 'rgba(15, 23, 42, 0.45)',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <noscript>
+    <style>
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    </style>
+  </noscript>
+</head>
+<body class="transition-colors duration-300 font-sans">
+  
+  <!-- Top Scroll Laser Progress Indicator -->
+  <div id="scroll-progress"></div>
+
+  <!-- Squares Background Canvas Layer (React Bits) -->
+  <canvas id="squares-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+  <!-- Aurora Background Blobs Layer -->
+  <div class="aurora-container">
+    <div class="aurora-blob blob-1"></div>
+    <div class="aurora-blob blob-2"></div>
+    <div class="aurora-blob blob-3"></div>
+    <div class="aurora-blob blob-4"></div>
+  </div>
+  <!-- Header / Navbar -->
+  <header class="sticky top-0 z-50 w-full border-b border-slate-200/50 dark:border-slate-800/50 bg-white/70 dark:bg-[#030712]/70 backdrop-blur-md transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        <!-- Logo / Name -->
+        <div class="flex-shrink-0">
+          <a href="#" class="flex items-center gap-2.5 hover:opacity-80 transition duration-300">
+            <div class="relative p-[2px] rounded-full bg-gradient-to-tr from-cyan-400 via-indigo-500 to-purple-500 flex-shrink-0">
+              <img
+                src="profile_photo.jpg"
+                alt="Sai Medhas Pilli"
+                class="w-8 h-8 rounded-full object-cover object-top block"
+              />
+            </div>
+            <span class="text-xl sm:text-2xl font-bold tracking-tight font-heading text-gradient">
+              Sai Medhas Pilli
+            </span>
+          </a>
+        </div>
+
+        <!-- Middle Links: React Bits <Dock /> Component (Desktop) -->
+        <nav class="hidden md:flex dock-nav-container" aria-label="Application dock">
+          <div id="nav-dock" class="dock-panel" role="toolbar">
+            <!-- About -->
+            <a href="#about" class="dock-item nav-link" aria-label="About" data-label="About">
+              <div class="dock-icon">
+                <span data-lucide="user" class="w-4 h-4"></span>
+              </div>
+              <div class="dock-label" role="tooltip">About</div>
+            </a>
+            <!-- Skills -->
+            <a href="#skills" class="dock-item nav-link" aria-label="Skills" data-label="Skills">
+              <div class="dock-icon">
+                <span data-lucide="cpu" class="w-4 h-4"></span>
+              </div>
+              <div class="dock-label" role="tooltip">Skills</div>
+            </a>
+            <!-- Projects -->
+            <a href="#projects" class="dock-item nav-link" aria-label="Projects" data-label="Projects">
+              <div class="dock-icon">
+                <span data-lucide="folder-kanban" class="w-4 h-4"></span>
+              </div>
+              <div class="dock-label" role="tooltip">Projects</div>
+            </a>
+            <!-- Experience -->
+            <a href="#experience" class="dock-item nav-link" aria-label="Experience" data-label="Experience">
+              <div class="dock-icon">
+                <span data-lucide="briefcase" class="w-4 h-4"></span>
+              </div>
+              <div class="dock-label" role="tooltip">Experience</div>
+            </a>
+            <!-- Education -->
+            <a href="#education" class="dock-item nav-link" aria-label="Education" data-label="Education">
+              <div class="dock-icon">
+                <span data-lucide="graduation-cap" class="w-4 h-4"></span>
+              </div>
+              <div class="dock-label" role="tooltip">Education</div>
+            </a>
+            <!-- Contact -->
+            <a href="#contact" class="dock-item nav-link" aria-label="Contact" data-label="Contact">
+              <div class="dock-icon">
+                <span data-lucide="mail" class="w-4 h-4"></span>
+              </div>
+              <div class="dock-label" role="tooltip">Contact</div>
+            </a>
+          </div>
+        </nav>
+
+        <!-- Right: Buttons -->
+        <div class="hidden md:flex items-center space-x-4">
+          <!-- GitHub -->
+          <a href="https://github.com/pillisaimedhas-dev" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full border border-slate-200 dark:border-gray-800 hover:border-slate-300 dark:hover:border-gray-700 bg-white dark:bg-gray-900/40 text-slate-500 dark:text-gray-400 hover:text-slate-800 dark:hover:text-gray-200 transition duration-300" aria-label="GitHub Profile">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a>
+
+          <!-- Resume Button -->
+          <a href="Sai_Medhas_Pilli_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-glow inline-flex items-center justify-center px-4 py-2 border border-cyan-500/30 hover:border-cyan-400/60 bg-cyan-50 dark:bg-cyan-950/30 text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 rounded-lg text-sm font-medium transition duration-300">
+            <span>Resume</span>
+            <span data-lucide="external-link" class="w-4 h-4 ml-2"></span>
+          </a>
+        </div>
+
+        <!-- Mobile menu toggle button -->
+        <div class="flex md:hidden items-center space-x-2">
+          <button id="menu-toggle" class="p-2 rounded-lg border border-slate-200 dark:border-gray-800 text-slate-500 dark:text-gray-400 hover:text-slate-800 dark:hover:text-gray-200 hover:bg-slate-50 dark:hover:bg-gray-900/50 focus:outline-none" aria-label="Toggle Menu">
+            <span id="menu-icon-open" data-lucide="menu" class="w-6 h-6"></span>
+            <span id="menu-icon-close" data-lucide="x" class="w-6 h-6 hidden"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden flex-col space-y-4 px-4 pt-2 pb-6 border-t border-slate-200/50 dark:border-gray-800/50 bg-white/95 dark:bg-gray-950/95 backdrop-blur-lg">
+      <a href="#about" class="text-base font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-gray-200 transition">About</a>
+      <a href="#skills" class="text-base font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-gray-200 transition">Skills</a>
+      <a href="#projects" class="text-base font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-gray-200 transition">Projects</a>
+      <a href="#experience" class="text-base font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-gray-200 transition">Experience</a>
+      <a href="#education" class="text-base font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-gray-200 transition">Education</a>
+      <a href="#contact" class="text-base font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-gray-200 transition">Contact</a>
+      <div class="flex items-center space-x-4 pt-4 border-t border-slate-200/50 dark:border-gray-800/50">
+        <a href="https://github.com/pillisaimedhas-dev" target="_blank" rel="noopener noreferrer" class="flex items-center text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-gray-200">
+          <span data-lucide="github" class="w-5 h-5 mr-2"></span> GitHub
+        </a>
+        <a href="Sai_Medhas_Pilli_Resume.pdf" target="_blank" rel="noopener noreferrer" class="flex-1 btn-glow inline-flex items-center justify-center px-4 py-2 border border-cyan-500/30 bg-cyan-50 dark:bg-cyan-950/30 text-cyan-600 dark:text-cyan-400 rounded-lg text-sm font-medium">
+          <span>Resume</span>
+          <span data-lucide="external-link" class="w-4 h-4 ml-2"></span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+    <!-- Background Glow Blobs -->
+    <div class="relative w-full overflow-hidden z-10">
+    <div class="glow-blob w-[400px] h-[400px] bg-cyan-500/20 top-20 -left-20"></div>
+    <div class="glow-blob w-[500px] h-[500px] bg-indigo-500/20 top-[40%] -right-30" style="animation-delay: -5s;"></div>
+    <div class="glow-blob w-[350px] h-[350px] bg-purple-500/20 bottom-20 left-[20%]" style="animation-delay: -10s;"></div>
+
+    <!-- Hero Section -->
+    <section id="about" class="relative w-full pt-20 pb-16 sm:pt-32 sm:pb-24 overflow-hidden z-10">
+
+      <!-- Content Container -->
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+        <div class="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16">
+
+          <!-- Left: Text Content -->
+          <div class="flex-1 text-center lg:text-left">
+            <!-- Availability Badge -->
+            <div class="reveal inline-flex items-center space-x-2 px-3 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm font-medium mb-8">
+              <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full pulse-dot"></span>
+              <span>Available for Software Engineering Opportunities</span>
+            </div>
+
+            <!-- Headline with TextType effect -->
+            <h1 id="hero-headline" class="reveal text-4xl sm:text-5xl md:text-6xl font-extrabold font-heading tracking-tight text-slate-900 dark:text-white mb-6">
+              <span id="text-type-prefix" class="text-type"></span><span id="text-type-target" class="text-type text-gradient"></span><span id="text-type-cursor" class="text-type__cursor">|</span>
+            </h1>
+
+            <!-- Tagline -->
+            <p class="hero-after-type text-lg sm:text-xl font-medium text-slate-700 dark:text-gray-300 font-heading mb-6 tracking-wide">
+              AI/ML &amp; IoT Enthusiast <span class="text-cyan-500">|</span> Full-Stack Builder <span class="text-purple-500">|</span> Software Developer
+            </p>
+
+            <!-- Bio -->
+            <p class="hero-after-type text-base sm:text-lg text-slate-600 dark:text-gray-400 leading-relaxed mb-10" style="transition-delay: 0.15s;">
+              Final-year B.Tech CSE student passionate about bridging software, cloud, and embedded systems. Experienced in developing production-ready full-stack applications, intelligent AI integrations, and sensor-to-cloud IoT architectures.
+            </p>
+
+            <!-- CTAs -->
+            <div class="hero-after-type flex justify-center lg:justify-start items-center mb-12" style="transition-delay: 0.30s;">
+              <a href="#projects" class="btn-glow inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 group">
+                <span>View Projects</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+
+            <!-- Quick Social Links -->
+            <div class="hero-after-type flex justify-center lg:justify-start items-center space-x-6" style="transition-delay: 0.45s;">
+              <a href="https://github.com/pillisaimedhas-dev" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl border border-slate-200 dark:border-gray-950 hover:border-slate-300 dark:hover:border-gray-800 bg-white hover:bg-slate-50 dark:bg-gray-900/30 text-slate-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300" aria-label="GitHub Profile">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/sai-medhas-pilli-557a79350/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-xl border border-slate-200 dark:border-gray-950 hover:border-slate-300 dark:hover:border-gray-800 bg-white hover:bg-slate-50 dark:bg-gray-900/30 text-slate-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300" aria-label="LinkedIn Profile">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a href="mailto:pillisaimedhas@gmail.com" class="p-3 rounded-xl border border-slate-200 dark:border-gray-950 hover:border-slate-300 dark:hover:border-gray-800 bg-white hover:bg-slate-50 dark:bg-gray-900/30 text-slate-500 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all duration-300" aria-label="Email Me">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Profile Image -->
+          <div class="reveal flex-shrink-0 flex justify-center lg:justify-end">
+            <div class="relative group">
+              <!-- Animated glow ring -->
+              <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-purple-500 blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-500 scale-110"></div>
+              <!-- Static border ring -->
+              <div class="relative rounded-3xl p-[3px] bg-gradient-to-tr from-cyan-400 via-indigo-500 to-purple-500">
+                <div class="rounded-3xl overflow-hidden w-72 sm:w-80 lg:w-96 border-4 border-white dark:border-gray-950 bg-white dark:bg-gray-950" style="aspect-ratio: 3/4;">
+                  <img
+                    src="WhatsApp Image 2026-08-27 at 5.37.37 PM.jpeg"
+                    alt="Sai Medhas Pilli - AI/ML & IoT Engineer"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <!-- Contact Me button overlaid on image -->
+                <a href="#contact" class="contact-hero-btn group/btn">
+                  <!-- Live pulse beacon dot -->
+                  <span class="relative flex h-2.5 w-2.5 shrink-0">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-400 shadow-[0_0_8px_#22d3ee]"></span>
+                  </span>
+                  
+                  <!-- Text -->
+                  <span class="tracking-wide group-hover/btn:text-cyan-200 transition-colors">Contact Me</span>
+                  
+                  <!-- Arrow / Action Icon Badge -->
+                  <span class="w-6 h-6 rounded-full bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 group-hover/btn:bg-cyan-400 group-hover/btn:text-gray-950 group-hover/btn:scale-110 transition-all duration-300 shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10 border-t border-slate-200 dark:border-gray-900">
+      <div class="text-center mb-16">
+        <h2 class="reveal text-3xl sm:text-4xl font-bold font-heading text-slate-900 dark:text-white mb-4">Technical Expertise</h2>
+        <div class="section-accent-bar mb-4"></div>
+        <p class="reveal text-slate-500 dark:text-gray-400 mt-4 max-w-xl mx-auto">A snapshot of languages, technologies, and tools I use to build scalable systems.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Languages Card -->
+        <div class="reveal glass-panel rounded-2xl hover-lift card-glow-wrapper overflow-hidden">
+          <div class="relative h-36 overflow-hidden">
+            <img src="skill_languages.jpg" alt="Programming Languages" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#040612]/90 via-[#040612]/30 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center space-x-4 mb-6">
+              <div class="p-3 rounded-xl bg-cyan-500/10 text-cyan-400">
+                <span data-lucide="code-2" class="w-6 h-6"></span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">Languages</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">Java</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">Python</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">JavaScript</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">SQL</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">HTML5</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">CSS3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frameworks & Libraries -->
+        <div class="reveal glass-panel rounded-2xl hover-lift card-glow-wrapper overflow-hidden" style="animation-delay: 0.1s;">
+          <div class="relative h-36 overflow-hidden">
+            <img src="skill_frameworks.jpg" alt="Frameworks" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#040612]/90 via-[#040612]/30 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center space-x-4 mb-6">
+              <div class="p-3 rounded-xl bg-indigo-500/10 text-indigo-400">
+                <span data-lucide="layers" class="w-6 h-6"></span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">Frameworks</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">React.js</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">Node.js</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">Express.js</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">Tailwind CSS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- IoT & Embedded Systems -->
+        <div class="reveal glass-panel rounded-2xl hover-lift card-glow-wrapper overflow-hidden" style="animation-delay: 0.2s;">
+          <div class="relative h-36 overflow-hidden">
+            <img src="skill_iot.jpg" alt="IoT and Embedded" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#040612]/90 via-[#040612]/30 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center space-x-4 mb-6">
+              <div class="p-3 rounded-xl bg-purple-500/10 text-purple-400">
+                <span data-lucide="cpu" class="w-6 h-6"></span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">IoT &amp; Embedded</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">ESP32</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">ESP8266</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">AWS IoT Core</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">Firebase</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">MQTT</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">Arduino IDE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Databases & Tools -->
+        <div class="reveal glass-panel rounded-2xl hover-lift card-glow-wrapper overflow-hidden" style="animation-delay: 0.3s;">
+          <div class="relative h-36 overflow-hidden">
+            <img src="skill_databases.jpg" alt="Databases and Tools" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#040612]/90 via-[#040612]/30 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center space-x-4 mb-6">
+              <div class="p-3 rounded-xl bg-emerald-500/10 text-emerald-400">
+                <span data-lucide="database" class="w-6 h-6"></span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white">Databases &amp; Tools</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">MySQL</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">SQLite</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">Git</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">GitHub</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">VS Code</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">Postman</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10 border-t border-slate-200 dark:border-gray-900">
+      <div class="text-center mb-16">
+        <h2 class="reveal text-3xl sm:text-4xl font-bold font-heading text-slate-900 dark:text-white mb-4">Featured Projects</h2>
+        <div class="section-accent-bar mb-4"></div>
+        <p class="reveal text-slate-500 dark:text-gray-400 mt-4 max-w-xl mx-auto">Explore some of my recent software development, IoT systems, and full-stack solutions.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project 1 -->
+        <div class="reveal glass-panel rounded-2xl flex flex-col justify-between hover-lift card-glow-wrapper overflow-hidden">
+          <div>
+            <div class="relative h-48 overflow-hidden">
+              <img src="project_parking.jpg" alt="Smart Car Parking System" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div class="absolute top-4 right-4 px-3 py-1 text-[10px] font-semibold tracking-wider uppercase rounded-full bg-cyan-500/90 border border-cyan-400/50 text-white shadow">
+                Ongoing
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Full-Stack</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">IoT Integration</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Real-Time Navigation</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">MySQL</span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white mb-3">Smart Car Parking System</h3>
+              <ul class="space-y-2 mb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Live Slot Tracking:</strong> Real-time space occupancy monitoring across facility zones.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Nearest-Slot Navigation:</strong> Directs drivers straight to closest open spots to cut wait times.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Manager Dashboard:</strong> Provides traffic analytics, peak-hour metrics, and occupancy trends.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex justify-between gap-4">
+            <a href="https://github.com/pillisaimedhas-dev" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center px-4 py-2 border border-slate-200 hover:border-slate-300 dark:border-gray-800 dark:hover:border-gray-700 bg-slate-50 hover:bg-slate-100 dark:bg-gray-900/40 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 dark:text-gray-300 dark:hover:text-gray-100 transition-colors">
+              <span data-lucide="github" class="w-4 h-4 mr-2"></span> Code
+            </a>
+            <a href="#" class="flex-1 inline-flex items-center justify-center px-4 py-2 border border-cyan-200 bg-cyan-50 hover:bg-cyan-100 dark:border-cyan-500/20 dark:bg-cyan-950/10 rounded-lg text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:bg-cyan-950/30 transition-colors">
+              <span data-lucide="external-link" class="w-4 h-4 mr-2"></span> Demo
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="reveal glass-panel rounded-2xl flex flex-col justify-between hover-lift card-glow-wrapper overflow-hidden" style="animation-delay: 0.1s;">
+          <div>
+            <div class="relative h-48 overflow-hidden">
+              <img src="project_food_ai.jpg" alt="AI Food Plate & Nutrition Analyzer" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div class="absolute top-4 right-4 px-3 py-1 text-[10px] font-semibold tracking-wider uppercase rounded-full bg-cyan-500/90 border border-cyan-400/50 text-white shadow">
+                Ongoing
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">React.js</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Node.js</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Google Gemini API</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Tailwind CSS</span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white mb-3">AI Food Plate & Nutrition Analyzer</h3>
+              <ul class="space-y-2 mb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Food Vision Detection:</strong> Identifies and segments meal items from plate images using Gemini AI.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Nutrient Estimation:</strong> Instantly calculates calories, macros (protein, carbs, fats), and portion sizes.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Dietary Intake Tracking:</strong> Logs nutritional data and compares intake against daily health goals.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex justify-between gap-4">
+            <a href="https://github.com/pillisaimedhas-dev" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center px-4 py-2 border border-slate-200 hover:border-slate-300 dark:border-gray-800 dark:hover:border-gray-700 bg-slate-50 hover:bg-slate-100 dark:bg-gray-900/40 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 dark:text-gray-300 dark:hover:text-gray-100 transition-colors">
+              <span data-lucide="github" class="w-4 h-4 mr-2"></span> Code
+            </a>
+            <a href="#" class="flex-1 inline-flex items-center justify-center px-4 py-2 border border-cyan-200 bg-cyan-50 hover:bg-cyan-100 dark:border-cyan-500/20 dark:bg-cyan-950/10 rounded-lg text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:bg-cyan-950/30 transition-colors">
+              <span data-lucide="external-link" class="w-4 h-4 mr-2"></span> Demo
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="reveal glass-panel rounded-2xl flex flex-col justify-between hover-lift card-glow-wrapper overflow-hidden" style="animation-delay: 0.2s;">
+          <div>
+            <div class="relative h-48 overflow-hidden">
+              <img src="project_encryption.jpg" alt="Hybrid File Encryption System" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div class="absolute top-4 right-4 px-3 py-1 text-[10px] font-semibold tracking-wider uppercase rounded-full bg-cyan-500/90 border border-cyan-400/50 text-white shadow">
+                Ongoing
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Cryptography</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Hybrid Algo</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Gmail OTP</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Node.js</span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white mb-3">Hybrid File Encryption System</h3>
+              <ul class="space-y-2 mb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Hybrid Cryptography:</strong> Combines AES symmetric and RSA asymmetric ciphers for high-grade security.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Gmail OTP Authentication:</strong> Enforces time-based multi-factor authentication via Gmail before decryption.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Tamper-Resistant Storage:</strong> Protects document payloads with secure client-side key handling.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex justify-between gap-4">
+            <a href="https://github.com/pillisaimedhas-dev" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center px-4 py-2 border border-slate-200 hover:border-slate-300 dark:border-gray-800 dark:hover:border-gray-700 bg-slate-50 hover:bg-slate-100 dark:bg-gray-900/40 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 dark:text-gray-300 dark:hover:text-gray-100 transition-colors">
+              <span data-lucide="github" class="w-4 h-4 mr-2"></span> Code
+            </a>
+            <a href="#" class="flex-1 inline-flex items-center justify-center px-4 py-2 border border-cyan-200 bg-cyan-50 hover:bg-cyan-100 dark:border-cyan-500/20 dark:bg-cyan-950/10 rounded-lg text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:bg-cyan-950/30 transition-colors">
+              <span data-lucide="external-link" class="w-4 h-4 mr-2"></span> Demo
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="reveal glass-panel rounded-2xl flex flex-col justify-between hover-lift card-glow-wrapper overflow-hidden">
+          <div>
+            <div class="relative h-48 overflow-hidden">
+              <img src="project_medical_iot.jpg" alt="AI Medical Supplies Pack" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            </div>
+            <div class="p-6">
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">ESP32</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">RFID</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">MQTT</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Predictive AI</span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white mb-3">AI Medical Supplies Pack</h3>
+              <ul class="space-y-2 mb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Sensor-Driven Tracking:</strong> Continuous stock sensing via RFID and load sensors to eliminate stockouts.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Predictive AI Model:</strong> Delivers 92% forecasting accuracy for hospital consumption trends.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Rapid Telemetry:</strong> Real-time MQTT alerts dispatched with ~1s automated response latency.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <a href="AI_Medical_Supplies_Pack_Case_Study.pdf" target="_blank" rel="noopener noreferrer" class="w-full btn-glow inline-flex items-center justify-center px-4 py-2.5 border border-cyan-500/30 hover:border-cyan-400/60 bg-cyan-50 hover:bg-cyan-100 dark:bg-cyan-950/20 dark:hover:bg-cyan-950/40 rounded-lg text-xs sm:text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition duration-300 group shadow-sm">
+              <span data-lucide="file-text" class="w-4 h-4 mr-2 transition-transform duration-200 group-hover:scale-110"></span>
+              <span>View More</span>
+              <span data-lucide="external-link" class="w-3.5 h-3.5 ml-1.5 opacity-70 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="reveal glass-panel rounded-2xl flex flex-col justify-between hover-lift card-glow-wrapper overflow-hidden" style="animation-delay: 0.1s;">
+          <div>
+            <div class="relative h-48 overflow-hidden">
+              <img src="project_ticketing.jpg" alt="Event Ticketing Platform" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            </div>
+            <div class="p-6">
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">React.js</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Node.js</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">MySQL</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">REST API</span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white mb-3">Event Ticketing Platform</h3>
+              <ul class="space-y-2 mb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Dynamic Seat Booking:</strong> Interactive venue layouts with live seat selection and real-time locking.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Gmail Ticket Delivery:</strong> Automatically generates and sends confirmed event tickets directly through users' Gmail.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Organizer Metrics:</strong> Live dashboard tracking capacity, sales analytics, and transaction logs.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="p-6 pt-0 flex justify-between gap-4">
+            <a href="https://github.com/pillisaimedhas-dev/event-ticketing-system" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center px-4 py-2 border border-slate-200 hover:border-slate-300 dark:border-gray-800 dark:hover:border-gray-700 bg-slate-50 hover:bg-slate-100 dark:bg-gray-900/40 rounded-lg text-xs font-semibold text-slate-700 hover:text-slate-900 dark:text-gray-300 dark:hover:text-gray-100 transition-colors">
+              <span data-lucide="github" class="w-4 h-4 mr-2"></span> Code
+            </a>
+            <a href="https://event-ticketing-system-68c1.onrender.com/" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center px-4 py-2 border border-cyan-200 bg-cyan-50 hover:bg-cyan-100 dark:border-cyan-500/20 dark:bg-cyan-950/10 rounded-lg text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:bg-cyan-950/30 transition-colors">
+              <span data-lucide="external-link" class="w-4 h-4 mr-2"></span> Demo
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="reveal glass-panel rounded-2xl flex flex-col justify-between hover-lift card-glow-wrapper overflow-hidden" style="animation-delay: 0.2s;">
+          <div>
+            <div class="relative h-48 overflow-hidden">
+              <img src="project_irrigation.jpg" alt="Automated Irrigation System" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            </div>
+            <div class="p-6">
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">ESP8266</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">MySQL</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Dashboard</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">IoT Telemetry</span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white mb-3">Automated Irrigation System</h3>
+              <ul class="space-y-2 mb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Smart Soil Monitoring:</strong> Measures soil moisture levels in real time to trigger precise automated watering.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Weather Analytics:</strong> Conserves water and optimizes farm health by factoring in forecast metrics.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">IoT Web Dashboard:</strong> Remote pump controls, live telemetry graphs, and historical usage tracking.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <a href="Smart_Irrigation_System_Case_Study.pdf" target="_blank" rel="noopener noreferrer" class="w-full btn-glow inline-flex items-center justify-center px-4 py-2.5 border border-cyan-500/30 hover:border-cyan-400/60 bg-cyan-50 hover:bg-cyan-100 dark:bg-cyan-950/20 dark:hover:bg-cyan-950/40 rounded-lg text-xs sm:text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition duration-300 group shadow-sm">
+              <span data-lucide="file-text" class="w-4 h-4 mr-2 transition-transform duration-200 group-hover:scale-110"></span>
+              <span>View More</span>
+              <span data-lucide="external-link" class="w-3.5 h-3.5 ml-1.5 opacity-70 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 7: Biometric Voting System using Fingerprint Sensor -->
+        <div class="reveal glass-panel rounded-2xl flex flex-col justify-between hover-lift card-glow-wrapper overflow-hidden" style="animation-delay: 0.1s;">
+          <div>
+            <div class="relative h-48 overflow-hidden">
+              <img src="project_biometric_voting.jpg" alt="Biometric Voting System using Fingerprint Sensor" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div class="absolute top-4 right-4 px-3 py-1 text-[10px] font-semibold tracking-wider uppercase rounded-full bg-emerald-500/90 border border-emerald-400/50 text-white shadow">
+                IoT Hardware
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Arduino</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Fingerprint Sensor</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Biometric Auth</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">Embedded C++</span>
+                <span class="tech-chip px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400">16x2 LCD</span>
+              </div>
+              <h3 class="text-xl font-bold font-heading text-slate-900 dark:text-white mb-3">Biometric Voting System using Fingerprint Sensor</h3>
+              <ul class="space-y-2 mb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Biometric Authentication:</strong> Optical sensor verifies registered voters to strictly enforce one-person, one-vote.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Hardware Ballot Console:</strong> Party push-button voting with instant LCD confirmation and tamper-proof storage.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><strong class="text-slate-900 dark:text-white font-medium">Admin Master Access:</strong> Biometrically authenticated election tallying to securely retrieve and display results.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="p-6 pt-0">
+            <a href="Fingerprint_EVS_Case_Study.pdf" target="_blank" rel="noopener noreferrer" class="w-full btn-glow inline-flex items-center justify-center px-4 py-2.5 border border-cyan-500/30 hover:border-cyan-400/60 bg-cyan-50 hover:bg-cyan-100 dark:bg-cyan-950/20 dark:hover:bg-cyan-950/40 rounded-lg text-xs sm:text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition duration-300 group shadow-sm">
+              <span data-lucide="file-text" class="w-4 h-4 mr-2 transition-transform duration-200 group-hover:scale-110"></span>
+              <span>View More</span>
+              <span data-lucide="external-link" class="w-3.5 h-3.5 ml-1.5 opacity-70 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="experience" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10 border-t border-slate-200 dark:border-gray-900">
+      <div class="text-center mb-16">
+        <h2 class="reveal text-3xl sm:text-4xl font-bold font-heading text-slate-900 dark:text-white mb-4">Work Experience</h2>
+        <div class="section-accent-bar mb-4"></div>
+        <p class="reveal text-slate-500 dark:text-gray-400 mt-4 max-w-xl mx-auto">Professional timeline and engineering internships.</p>
+      </div>
+
+      <!-- Experience Container -->
+      <div class="max-w-6xl mx-auto">
+        <!-- Experience Item -->
+        <div class="reveal relative">
+          <div class="glass-panel p-8 sm:p-10 lg:p-12 rounded-3xl card-glow-wrapper">
+            <!-- Badges -->
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs sm:text-sm font-semibold rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                June 2025 – July 2025
+              </span>
+              <span class="inline-block px-3.5 py-1.5 text-xs sm:text-sm font-semibold rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400">
+                Full-Time Internship
+              </span>
+              <span class="inline-block px-3.5 py-1.5 text-xs sm:text-sm font-semibold rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-600 dark:text-purple-400">
+                Hyderabad, India
+              </span>
+            </div>
+
+            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading text-slate-900 dark:text-white mb-2">AI &amp; IoT Engineering Intern</h3>
+            <p class="text-lg sm:text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-2">RedandBlue Applied Innovations Pvt. Ltd.</p>
+            <p class="text-sm sm:text-base text-slate-500 dark:text-gray-400 mb-8 flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-cyan-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>WeWork Rajapushpa Summit, Financial District, Hyderabad</span>
+              <span class="text-slate-400 dark:text-gray-600">&nbsp;·&nbsp;</span>
+              <a href="https://www.linkedin.com/company/redandblue-applied-innovations/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 font-medium hover:underline inline-flex items-center gap-1">
+                <span>@RedandBlue</span>
+                <span data-lucide="external-link" class="w-3.5 h-3.5"></span>
+              </a>
+            </p>
+
+            <!-- Key Responsibilities & Highlights -->
+            <ul class="space-y-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400 shrink-0 mr-3 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Worked hands-on with <strong class="text-slate-900 dark:text-white font-semibold">Artificial Intelligence, Machine Learning, and IoT</strong> — building real-time applications that bridged embedded hardware with intelligent cloud pipelines.</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400 shrink-0 mr-3 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Built <strong class="text-slate-900 dark:text-white font-semibold">functional IoT hardware models</strong> from scratch under expert mentorship — solving real engineering problems with MQTT protocols, ESP32 boards, and live sensor data.</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400 shrink-0 mr-3 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Engaged in <strong class="text-slate-900 dark:text-white font-semibold">industry presentations, technical reviews, and cross-functional teamwork</strong> — gaining a complete professional engineering experience beyond the classroom.</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyan-400 shrink-0 mr-3 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Part of the <em>"Empowering Young Innovators in AI | ML | IoT"</em> cohort — a flagship program training the <strong class="text-slate-900 dark:text-white font-semibold">next generation of tech leaders</strong> to confidently step into the tech ecosystem.</span>
+              </li>
+            </ul>
+
+            <!-- Tech Stack Tags -->
+            <div class="flex flex-wrap items-center gap-2 mb-8 pt-4 border-t border-slate-200/40 dark:border-gray-800/60">
+              <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-gray-500 mr-2">Technologies Used:</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">Artificial Intelligence</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">Machine Learning</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">ESP32 &amp; Embedded IoT</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">MQTT Protocol</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">Sensor-to-Cloud</span>
+              <span class="tech-chip px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 border border-slate-200 text-slate-600 dark:bg-gray-900/60 dark:border-gray-800 dark:text-gray-300">Team Collaboration</span>
+            </div>
+
+            <!-- Large Photo Gallery -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="relative rounded-2xl overflow-hidden group/img shadow-lg" style="aspect-ratio: 16/10;">
+                <img
+                  src="internship_team.jpg"
+                  alt="RedandBlue Internship Team at WeWork Hyderabad"
+                  class="w-full h-full object-cover object-center transition-transform duration-500 group-hover/img:scale-105"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+                <p class="absolute bottom-4 left-4 right-4 text-xs sm:text-sm font-medium text-white/95 flex items-center gap-1.5">
+                  <span>🏢</span> Team at RedandBlue HQ, WeWork Hyderabad
+                </p>
+              </div>
+              <div class="relative rounded-2xl overflow-hidden group/img shadow-lg" style="aspect-ratio: 16/10;">
+                <img
+                  src="internship_poster.jpg"
+                  alt="RedandBlue Tech Internship Program 2025 Poster"
+                  class="w-full h-full object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+                <p class="absolute bottom-4 left-4 right-4 text-xs sm:text-sm font-medium text-white/95 flex items-center gap-1.5">
+                  <span>📋</span> Official Program Poster · Summer 2025
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10 border-t border-slate-200 dark:border-gray-900">
+      <div class="text-center mb-16">
+        <h2 class="reveal text-3xl sm:text-4xl font-bold font-heading text-slate-900 dark:text-white mb-4">Education & Certifications</h2>
+        <div class="section-accent-bar mb-4"></div>
+        <p class="reveal text-slate-500 dark:text-gray-400 mt-4 max-w-xl mx-auto">Academic history and professional achievements.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Education Timeline (Takes 2 cols) -->
+        <div class="lg:col-span-2 space-y-6">
+          <h3 class="reveal text-xl sm:text-2xl font-bold font-heading text-slate-900 dark:text-white mb-6 flex items-center">
+            <span data-lucide="graduation-cap" class="w-6 h-6 mr-2 text-cyan-400"></span> Academic Background
+          </h3>
+
+          <!-- B.Tech Card -->
+          <div class="reveal glass-panel p-6 rounded-2xl card-glow-wrapper">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-start mb-4 gap-2">
+              <div>
+                <h4 class="text-lg sm:text-xl font-bold font-heading text-slate-900 dark:text-white">B.Tech in Computer Science & Engineering</h4>
+                <p class="text-sm font-semibold text-slate-500 dark:text-gray-400">Vel Tech Rangarajan Dr. Sagunthala R&D Institute of Science and Technology, Chennai</p>
+              </div>
+              <span class="shrink-0 px-3 py-1 text-xs font-semibold rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 self-start">
+                2023 – 2027
+              </span>
+            </div>
+            <div class="flex items-center space-x-2 text-sm sm:text-base text-slate-700 dark:text-gray-300 font-medium mt-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-500"></span>
+              <span>CGPA: 8.02</span>
+            </div>
+          </div>
+
+          <!-- Intermediate Card -->
+          <div class="reveal glass-panel p-6 rounded-2xl card-glow-wrapper">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-start mb-4 gap-2">
+              <div>
+                <h4 class="text-lg sm:text-xl font-bold font-heading text-slate-900 dark:text-white">Intermediate (MPC)</h4>
+                <p class="text-sm font-semibold text-slate-500 dark:text-gray-400">Sri Chaitanya Junior College, Vijayawada</p>
+              </div>
+              <span class="shrink-0 px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 border border-slate-200 text-slate-500 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400 self-start">
+                2021 – 2023
+              </span>
+            </div>
+            <div class="flex items-center space-x-2 text-sm sm:text-base text-slate-700 dark:text-gray-300 font-medium mt-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-500"></span>
+              <span>Percentage: 88.9%</span>
+            </div>
+          </div>
+
+          <!-- SSC Card -->
+          <div class="reveal glass-panel p-6 rounded-2xl card-glow-wrapper">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-start mb-4 gap-2">
+              <div>
+                <h4 class="text-lg sm:text-xl font-bold font-heading text-slate-900 dark:text-white">Secondary School Certificate (SSC)</h4>
+                <p class="text-sm font-semibold text-slate-500 dark:text-gray-400">Sri Chaitanya (EM) High School, Rajahmundry</p>
+              </div>
+              <span class="shrink-0 px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 border border-slate-200 text-slate-500 dark:bg-gray-900/80 dark:border-gray-800 dark:text-gray-400 self-start">
+                2021
+              </span>
+            </div>
+            <div class="flex items-center space-x-2 text-sm sm:text-base text-slate-700 dark:text-gray-300 font-medium mt-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-500"></span>
+              <span>CGPA: 10.0 / 10</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certifications (Takes 1 col) -->
+        <div class="space-y-6">
+          <h3 class="reveal text-xl sm:text-2xl font-bold font-heading text-slate-900 dark:text-white mb-6 flex items-center">
+            <span data-lucide="award" class="w-6 h-6 mr-2 text-cyan-400"></span> Certifications
+          </h3>
+
+          <div class="grid grid-cols-1 gap-6">
+            <!-- Cert 1 -->
+            <div class="reveal glass-panel p-6 rounded-2xl card-glow-wrapper flex items-start space-x-4">
+              <div class="p-3 rounded-xl bg-purple-500/10 text-purple-400 shrink-0">
+                <span data-lucide="badge-check" class="w-6 h-6"></span>
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-bold font-heading text-slate-900 dark:text-white">Introduction to Industry 4.0 and IIoT</h4>
+                <p class="text-xs text-indigo-600 dark:text-indigo-400 font-medium mt-1 uppercase">NPTEL Credentials</p>
+              </div>
+            </div>
+
+            <!-- Cert 2 -->
+            <div class="reveal glass-panel p-6 rounded-2xl card-glow-wrapper flex items-start space-x-4">
+              <div class="p-3 rounded-xl bg-purple-500/10 text-purple-400 shrink-0">
+                <span data-lucide="badge-check" class="w-6 h-6"></span>
+              </div>
+              <div>
+                <h4 class="text-base sm:text-lg font-bold font-heading text-slate-900 dark:text-white">Physics of Renewable Energy</h4>
+                <p class="text-xs text-indigo-600 dark:text-indigo-400 font-medium mt-1 uppercase">NPTEL Credentials</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Me Section -->
+    <section id="contact" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-10 border-t border-slate-200 dark:border-gray-900">
+      <div class="text-center mb-16">
+        <h2 class="reveal text-3xl sm:text-4xl font-bold font-heading text-slate-900 dark:text-white mb-4">Get In Touch</h2>
+        <div class="section-accent-bar mb-4"></div>
+        <p class="reveal text-slate-500 dark:text-gray-400 mt-4 max-w-xl mx-auto">Have a project, opportunity, or query? Fill out the form below or reach out directly.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+        <!-- Contact Details (Takes 2 cols) -->
+        <div class="lg:col-span-2 space-y-6">
+          <h3 class="reveal text-xl sm:text-2xl font-bold font-heading text-slate-900 dark:text-white mb-6">Contact Information</h3>
+          
+          <!-- Email Info -->
+          <div class="reveal glass-panel p-6 rounded-2xl card-glow-wrapper flex items-center space-x-4">
+            <div class="p-3.5 rounded-xl bg-cyan-500/10 text-cyan-400 shrink-0">
+              <span data-lucide="mail" class="w-6 h-6"></span>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-slate-500 dark:text-gray-500 uppercase tracking-wider">Email Me</p>
+              <a href="mailto:pillisaimedhas@gmail.com" class="text-sm sm:text-base font-bold text-slate-800 dark:text-gray-200 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                pillisaimedhas@gmail.com
+              </a>
+            </div>
+          </div>
+
+          <!-- Phone Info -->
+          <div class="reveal glass-panel p-6 rounded-2xl card-glow-wrapper flex items-center space-x-4">
+            <div class="p-3.5 rounded-xl bg-indigo-500/10 text-indigo-400 shrink-0">
+              <span data-lucide="phone" class="w-6 h-6"></span>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-slate-500 dark:text-gray-500 uppercase tracking-wider">Call Me</p>
+              <a href="tel:+917036210953" class="text-sm sm:text-base font-bold text-slate-800 dark:text-gray-200 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+                +91 7036210953
+              </a>
+            </div>
+          </div>
+
+          <!-- Location Info -->
+          <div class="reveal glass-panel p-6 rounded-2xl card-glow-wrapper flex items-center space-x-4">
+            <div class="p-3.5 rounded-xl bg-purple-500/10 text-purple-400 shrink-0">
+              <span data-lucide="map-pin" class="w-6 h-6"></span>
+            </div>
+            <div>
+              <p class="text-xs font-semibold text-slate-500 dark:text-gray-500 uppercase tracking-wider">Location</p>
+              <p class="text-sm sm:text-base font-bold text-slate-800 dark:text-gray-200">
+                Chennai, Tamil Nadu, India
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form (Takes 3 cols) -->
+        <div class="lg:col-span-3">
+          <div class="reveal glass-panel p-8 rounded-2xl card-glow-wrapper">
+            <h3 class="text-xl sm:text-2xl font-bold font-heading text-slate-900 dark:text-white mb-6">Send A Message</h3>
+            
+            <form id="contact-form" class="space-y-4">
+              <!-- Name & Email Rows -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="name" class="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">Your Name</label>
+                  <input type="text" id="name" name="name" required class="form-input w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-gray-800 text-slate-900 dark:text-gray-100 text-sm focus:border-cyan-500 transition duration-300" placeholder="John Doe">
+                </div>
+                <div>
+                  <label for="email" class="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">Email Address</label>
+                  <input type="email" id="email" name="email" required class="form-input w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-gray-800 text-slate-900 dark:text-gray-100 text-sm focus:border-cyan-500 transition duration-300" placeholder="johndoe@example.com">
+                </div>
+              </div>
+
+              <!-- Subject -->
+              <div>
+                <label for="subject" class="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">Subject</label>
+                <input type="text" id="subject" name="subject" required class="form-input w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-gray-800 text-slate-900 dark:text-gray-100 text-sm focus:border-cyan-500 transition duration-300" placeholder="Project Inquiry / Collaboration">
+              </div>
+
+              <!-- Message -->
+              <div>
+                <label for="message" class="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">Your Message</label>
+                <textarea id="message" name="message" rows="5" required class="form-input w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-gray-800 text-slate-900 dark:text-gray-100 text-sm focus:border-cyan-500 transition duration-300" placeholder="Tell me more about your requirements..."></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn-glow w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-sm font-semibold rounded-xl text-white bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 hover:from-cyan-400 hover:via-indigo-500 hover:to-purple-500 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 group cursor-pointer">
+                <span>Send Message</span>
+                <span data-lucide="send" class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"></span>
+              </button>
+
+              <!-- Status Dialog -->
+              <div id="form-status" class="mt-4 text-sm font-medium text-center opacity-0 h-0 overflow-hidden"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-slate-100 dark:border-gray-900 py-8 bg-white/80 dark:bg-gray-950/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- Copyright -->
+        <p class="text-xs sm:text-sm text-slate-500 dark:text-gray-500">
+          Designed & Built by Sai Medhas Pilli © 2026. All rights reserved.
+        </p>
+        
+        <!-- Socials -->
+        <div class="flex items-center space-x-4">
+          <a href="https://github.com/pillisaimedhas-dev" target="_blank" rel="noopener noreferrer" class="text-slate-400 dark:text-gray-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition" aria-label="GitHub">
+            <span data-lucide="github" class="w-5 h-5"></span>
+          </a>
+          <a href="https://linkedin.com/in/sai-medhas-pilli-89849a2a7" target="_blank" rel="noopener noreferrer" class="text-slate-400 dark:text-gray-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition" aria-label="LinkedIn">
+            <span data-lucide="linkedin" class="w-5 h-5"></span>
+          </a>
+          <a href="mailto:pillisaimedhas@gmail.com" class="text-slate-400 dark:text-gray-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition" aria-label="Email">
+            <span data-lucide="mail" class="w-5 h-5"></span>
+          </a>
+        </div>
+      </div>
+    </footer>
+  <!-- Floating Back to Top Button with Circular Progress -->
+  <button id="back-to-top" aria-label="Back to Top">
+    <svg class="progress-ring" viewBox="0 0 54 54">
+      <defs>
+        <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#06b6d4" />
+          <stop offset="50%" stop-color="#6366f1" />
+          <stop offset="100%" stop-color="#a855f7" />
+        </linearGradient>
+      </defs>
+      <circle cx="27" cy="27" r="25" />
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m18 15-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

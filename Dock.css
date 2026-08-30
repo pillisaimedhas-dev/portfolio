@@ -1,0 +1,160 @@
+/* ==========================================================================
+   React Bits <Dock /> Component Adaptation for Top Navigation Bar
+   - Magnification gesture based on cursor proximity
+   - Cyber-space glassmorphic color palette with neon cyan & indigo accents
+   - Floating tooltip labels with smooth spring-like transitions
+   ========================================================================== */
+
+.dock-nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dock-panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(6, 10, 24, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 10px 30px -10px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(6, 182, 212, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  height: 52px;
+}
+
+.dock-panel:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 
+    0 12px 35px -8px rgba(0, 0, 0, 0.8),
+    0 0 28px rgba(6, 182, 212, 0.22),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.dock-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  transform-origin: center center;
+  transition: 
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+  will-change: width, height, transform;
+}
+
+.dock-item:hover,
+.dock-item.hovered {
+  color: #38bdf8;
+  background: rgba(6, 182, 212, 0.2);
+  border-color: rgba(6, 182, 212, 0.6);
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.4);
+}
+
+.dock-item.active {
+  color: #22d3ee !important;
+  background: rgba(6, 182, 212, 0.25) !important;
+  border-color: rgba(6, 182, 212, 0.75) !important;
+  box-shadow: 0 0 14px rgba(6, 182, 212, 0.45);
+}
+
+/* Active indicator dot underneath active dock item */
+.dock-item.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px !important;
+  height: 4px !important;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 6px #22d3ee;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.dock-item.nav-link.active::after {
+  opacity: 1;
+  width: 4px !important;
+  height: 4px !important;
+}
+
+.dock-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: transform 0.15s ease;
+}
+
+.dock-icon svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.15s ease, stroke 0.2s ease;
+}
+
+/* Tooltip label positioned smoothly below dock */
+.dock-label {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  white-space: nowrap;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  background: rgba(6, 10, 24, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #f1f5f9;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.7), 0 0 14px rgba(6, 182, 212, 0.3);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
+  z-index: 70;
+}
+
+/* Arrow indicator on tooltip */
+.dock-label::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: rgba(6, 10, 24, 0.95);
+  border-left: 1px solid rgba(6, 182, 212, 0.35);
+  border-top: 1px solid rgba(6, 182, 212, 0.35);
+}
+
+.dock-item:hover .dock-label,
+.dock-item:focus .dock-label {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
