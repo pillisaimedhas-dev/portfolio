@@ -316,12 +316,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 7. Contact Form Handling & Validation
+  // 7. Contact Form Handling & Web3Forms Integration
   const contactForm = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       // Get values
@@ -341,10 +341,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Simulate successful submission
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalBtnHTML = submitBtn.innerHTML;
-      
+
+      // Extract form data
+      const formData = new FormData(contactForm);
+      const accessKey = formData.get('access_key');
+
+      // Check if access key is still default placeholder
+      if (!accessKey || accessKey === 'YOUR_ACCESS_KEY_HERE') {
+        showStatus('Please configure your free Web3Forms Access Key in index.html to receive messages.', 'error');
+        return;
+      }
+
       submitBtn.disabled = true;
       submitBtn.innerHTML = `
         <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -354,15 +363,37 @@ document.addEventListener('DOMContentLoaded', () => {
         Sending...
       `;
 
-      setTimeout(() => {
-        showStatus('Thank you! Your message has been sent successfully.', 'success');
-        contactForm.reset();
+      try {
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: json
+        });
+
+        const data = await response.json();
+
+        if (response.status === 200 && data.success) {
+          showStatus('Thank you! Your message has been sent successfully.', 'success');
+          contactForm.reset();
+        } else {
+          showStatus(data.message || 'Failed to send message. Please try again later.', 'error');
+        }
+      } catch (err) {
+        console.error('Contact form submission error:', err);
+        showStatus('A network error occurred. Please check your connection and try again.', 'error');
+      } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnHTML;
         if (typeof lucide !== 'undefined') {
           lucide.createIcons();
         }
-      }, 1500);
+      }
     });
   }
 
